@@ -1,0 +1,77 @@
+esphome:
+  name: lhc-esphome
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+    version: "2.0.6"
+
+# Enable logging
+logger:
+  level: VERBOSE
+  logs:
+     component: ERROR
+
+# Enable Home Assistant API
+api:
+  password: "tijolo25"
+
+ota:
+  - platform: esphome
+    password: "tijolo25"
+
+wifi:
+  ssid: "IoT"
+  password: "tijolo22"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Lhc-Esphome Fallback Hotspot"
+    password: "Qwd4A2iAb2m3"
+
+captive_portal:
+  
+web_server:
+  port: 80
+  version: 3
+
+i2c:
+  sda: GPIO14
+  scl: GPIO13
+  scan: true
+  
+sensor:
+  - platform: wifi_signal
+    name: "Wifi Signal"
+    update_interval: 60s
+
+  - platform: adc
+    pin: GPIO4
+    name: "Battery Voltage"
+    update_interval: 5s
+    
+  - platform: internal_temperature
+    name: "Internal Temperature"
+
+  - platform: bmp280_i2c
+    temperature:
+      name: "Temperatura"
+      oversampling: 16x
+    pressure:
+      name: "Pressão"
+    address: 0x76
+    update_interval: 5s
+
+light:
+  - platform: neopixelbus
+    id: ws2812
+    type: GRB
+    variant: WS2812X
+    pin: GPIO38
+    num_leds: 1
+    name: "Leds"
+    restore_mode: ALWAYS_OFF
+    effects:
+      - pulse:
+      - addressable_fireworks:
