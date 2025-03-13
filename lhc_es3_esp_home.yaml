@@ -15,15 +15,15 @@ logger:
 
 # Enable Home Assistant API
 api:
-  password: "tijolo25"
+  password: "senha"
 
 ota:
   - platform: esphome
-    password: "tijolo25"
+    password: "senha"
 
 wifi:
   ssid: "IoT"
-  password: "tijolo22"
+  password: "senha"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
