@@ -15,15 +15,16 @@ logger:
 
 # Enable Home Assistant API
 api:
-  password: "senha"
+  encryption:
+    key: "0ayuoZ2BOWkHP2b1Tz8vy5ER3BpzMMilT3sftL8iEKM="
 
 ota:
   - platform: esphome
-    password: "senha"
+    password: "tijolo25"
 
 wifi:
   ssid: "IoT"
-  password: "senha"
+  password: "tijolo22"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
@@ -40,8 +41,13 @@ i2c:
   sda: GPIO14
   scl: GPIO13
   scan: true
-  
+
+one_wire:
+  - platform: gpio
+    pin: GPIO37
+        
 sensor:
+
   - platform: wifi_signal
     name: "Wifi Signal"
     update_interval: 60s
@@ -61,6 +67,11 @@ sensor:
     pressure:
       name: "Pressão"
     address: 0x76
+    update_interval: 5s
+
+  - platform: dallas_temp
+    address: 0x65000005f3b8c328
+    name: "Termometro"
     update_interval: 5s
 
 light:
