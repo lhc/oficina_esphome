@@ -1,0 +1,67 @@
+esphome:
+  name: esp32-devkitc-v4
+
+esp32:
+  board: esp-wrover-kit
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "tijolo22"
+
+ota:
+  - platform: esphome
+    password: "tijolo22"
+
+wifi:
+  ssid: "IoT"
+  password: "tijolo22"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp32-Devkitc-V4"
+    password: "2yBYiZIDp2nE"
+
+captive_portal:
+
+web_server:
+  port: 80
+  version: 3
+
+    # validar datasheet cmu esp32
+i2c:
+  - id: bus_a
+    sda: GPIO14
+    scl: GPIO13
+    scan : true
+
+  - id: bus_b
+    sda: GPIO34 
+    scl: GPIO35  
+    scan: true
+
+sensor:
+
+  - platform: wifi_signal
+    name: "Wifi Signal"
+    update_interval: 60s
+
+  - platform: internal_temperature
+    name: "Internal Temperature"
+  
+
+  - platform: bmp280_i2c
+    i2c_id: bus_a
+    temperature:
+      name: "Temperatura"
+      oversampling: 16x
+    pressure:
+      name: "Pressão"
+    address: 0x76
+    update_interval: 5s
+
+
