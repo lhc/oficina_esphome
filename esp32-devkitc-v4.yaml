@@ -1,5 +1,5 @@
 esphome:
-  name: esp32-devkitc-v4
+  name: esp32-gzm
 
 esp32:
   board: esp-wrover-kit
@@ -11,20 +11,20 @@ logger:
 
 # Enable Home Assistant API
 api:
-  password: ""
+  password: "tijolo22"
 
 ota:
   - platform: esphome
-    password: ""
+    password: "tijolo22"
 
 wifi:
-  ssid: "IoT"
-  password: "senha"
+  ssid: "nome_rede"
+  password: "senha_123"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Esp32-Devkitc-V4"
-    password: ""
+    password: "2yBYiZIDp2nE"
 
 captive_portal:
 
@@ -32,7 +32,10 @@ web_server:
   port: 80
   version: 3
 
-    # validar datasheet cmu esp32
+# one_wire:
+#   - platform: gpio
+#     pin: GPIO17
+
 i2c:
   - id: bus_a
     sda: GPIO14
@@ -40,8 +43,8 @@ i2c:
     scan : true
 
   - id: bus_b
-    sda: GPIO34 
-    scl: GPIO35  
+    sda: GPIO32 
+    scl: GPIO33   
     scan: true
 
 sensor:
@@ -53,6 +56,12 @@ sensor:
   - platform: internal_temperature
     name: "Internal Temperature"
   
+  - platform: vl53l0x
+    i2c_id: bus_b
+    name: "VL53L0x Distance"
+    address: 0x29
+    update_interval: 5s
+    long_range: true
 
   - platform: bmp280_i2c
     i2c_id: bus_a
@@ -64,4 +73,8 @@ sensor:
     address: 0x76
     update_interval: 5s
 
+  # - platform: dallas_temp
+  #   address: 0x1234567812345628
+  #   name: "Termometro"
+  #   update_interval: 5s
 
