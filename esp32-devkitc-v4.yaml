@@ -19,7 +19,7 @@ ota:
 
 wifi:
   ssid: "IoT"
-  password: "tijolo22"
+  password: "senha"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
