@@ -20,11 +20,11 @@ api:
 
 ota:
   - platform: esphome
-    password: "tijolo25"
+    password: ""
 
 wifi:
   ssid: "IoT"
-  password: "tijolo22"
+  password: ""
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
